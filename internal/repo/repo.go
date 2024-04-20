@@ -2,15 +2,18 @@ package repo
 
 import (
 	"context"
-	"database/sql"
-	"farmers_connect/internal/config"
 	"fmt"
+	"time"
+
+	"farmers_connect/internal/config"
+
+	"database/sql"
+
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
-	"time"
 )
 
 type DB interface {

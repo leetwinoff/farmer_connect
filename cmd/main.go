@@ -1,14 +1,11 @@
 package main
 
 import (
-	//Standard library packages
 	"context"
 	"log"
 
-	//Internal packages
 	"farmers_connect/internal/config"
 	"farmers_connect/internal/repo"
-	//External packages
 )
 
 func main() {

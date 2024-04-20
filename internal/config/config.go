@@ -1,10 +1,8 @@
 package config
 
 import (
-	//Standard library packages
 	"fmt"
 
-	//External packages
 	"github.com/caarlos0/env/v6"
 )
 
