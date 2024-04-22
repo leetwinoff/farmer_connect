@@ -2,12 +2,11 @@ package repo
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"time"
 
 	"farmers_connect/internal/config"
-
-	"database/sql"
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/stdlib"
