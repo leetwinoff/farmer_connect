@@ -58,6 +58,7 @@ func NewDB(ctx context.Context, cfg config.DB) (*dbWrapper, error) {
 	pingCtx, cancel := context.WithTimeout(ctx, 10*time.Second)
 	defer cancel()
 	if err := db.PingContext(pingCtx); err != nil {
+		logger.Error().Err(err).Msg("failed to ping db")
 		return nil, fmt.Errorf("failed to ping database: %w", err)
 	}
 	logger.Trace().Msg("ping db success")
