@@ -12,7 +12,6 @@ import (
 	"github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
 	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
 )
 
 type DB interface {
@@ -70,8 +69,29 @@ type dbWrapper struct {
 	DB *sqlx.DB
 }
 
-func (db *dbWrapper) Close(ctx context.Context) {
-	if err := db.DB.Close(); err != nil {
-		log.Error().Err(err).Msg("failed to close database")
+func (db *dbWrapper) ExecContext(ctx context.Context, query string, args ...any) (sql.Result, error) {
+	return db.DB.ExecContext(ctx, query, args...)
+}
+
+func (db *dbWrapper) GetContext(ctx context.Context, dest interface{}, query string, args ...any) error {
+	return db.DB.GetContext(ctx, dest, query, args...)
+}
+
+func (db *dbWrapper) SelectContext(ctx context.Context, dest interface{}, query string, args ...any) error {
+	return db.DB.SelectContext(ctx, dest, query, args...)
+}
+
+func (db *dbWrapper) BeginTx(ctx context.Context) (Tx, error) {
+	tx, err := db.DB.BeginTxx(ctx, nil)
+	if err != nil {
+		return nil, err
 	}
+	return tx, nil
+}
+
+func (db *dbWrapper) Close(ctx context.Context) error {
+	if err := db.DB.Close(); err != nil {
+		return fmt.Errorf("failed to close db: %w", err)
+	}
+	return nil
 }
