@@ -23,11 +23,11 @@ type User struct {
 	CreatedAt     *time.Time `db:"created_at"`
 }
 
-type UserRole int
+type UserRole string
 
 const (
-	FarmerRole UserRole = iota + 1
-	ConsumerRole
+	FarmerRole   UserRole = "farmer"
+	ConsumerRole UserRole = "consumer"
 )
 
 type usersRepo struct {
