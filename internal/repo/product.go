@@ -9,9 +9,9 @@ type Product struct {
 	ID          string    `db:"id"`
 	Name        string    `db:"name"`
 	Type        string    `db:"type"`
-	ProductPic  *string   `db:"product_pic"`
+	Image       *string   `db:"image"`
 	Description *string   `db:"description"`
-	Price       int       `db:"price"`
+	Price       float64   `db:"price"`
 	Unit        string    `db:"unit"`
 	Quantity    int       `db:"quantity"`
 	CreatedAt   time.Time `db:"created_at"`
