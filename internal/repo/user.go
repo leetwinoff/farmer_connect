@@ -26,8 +26,8 @@ type User struct {
 type UserRole int
 
 const (
-	Farmer UserRole = iota + 1
-	Consumer
+	FarmerRole UserRole = iota + 1
+	ConsumerRole
 )
 
 type usersRepo struct {
